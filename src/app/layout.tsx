@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + "min-h-screen"}>
+      <body className={inter.className + "min-h-screen transition-colors"}>
         <Providers>
           <div className="main antialiased dark:bg-slate-900">
             <div className="gradient " />
