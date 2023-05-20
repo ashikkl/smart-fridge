@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     },
-    async jwt({ token, user }) {
+    /* async jwt({ token, user }) {
       const userRef = firestore.collection('users').doc(token.email);
       const dbUser = await userRef.get();
 
@@ -60,7 +60,7 @@ export const authOptions: NextAuthOptions = {
         email: userData.email,
         picture: userData.image,
       };
-    },
+    }, */
     redirect() {
       return "/dashboard";
     },
