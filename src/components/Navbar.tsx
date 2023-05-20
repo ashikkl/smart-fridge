@@ -1,35 +1,37 @@
-"use-client"
+"use client"
 
 import { ThemeToggle } from "./ThemeToggle";
 import { signOut, signIn, useSession } from "next-auth/react";
+import { Button } from "./ui/Button";
 
 function Navbar() {
-  /* const { data } = useSession(); */
+  const { data } = useSession();
   return (
     <div className="  left-0 right-0 top-0 z-50 flex  h-20 items-center justify-between shadow-sm">
       <div className="container mx-auto flex w-full max-w-7xl items-center justify-between">
         <div className="hidden gap-4 md:flex">
           <ThemeToggle />
         </div>
-        {/* <div className="flex">
+        <div className="flex">
           {!data ? (
-            <button
+            <Button
               onClick={() => {
                 signIn();
               }}
             >
               Sign in
-            </button>
+            </Button>
           ) : (
-            <button
+            <Button
+            variant={"outline"}
               onClick={() => {
-                signOut({ redirect: false });
+                signOut();
               }}
             >
               Sign out
-            </button>
+            </Button>
           )}
-        </div> */}
+        </div>
 
         {/* For mobile view */}
         <div className="md:hidden">
