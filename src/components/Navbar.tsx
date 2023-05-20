@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ThemeToggle } from "./ThemeToggle";
 import { signOut, signIn, useSession } from "next-auth/react";
@@ -15,15 +15,17 @@ function Navbar() {
         <div className="flex">
           {!data ? (
             <Button
+              className="z-0"
               onClick={() => {
-                signIn();
+                signIn("google");
               }}
             >
               Sign in
             </Button>
           ) : (
             <Button
-            variant={"outline"}
+              className="z-0"
+              variant={"outline"}
               onClick={() => {
                 signOut();
               }}

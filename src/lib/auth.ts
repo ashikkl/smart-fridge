@@ -1,11 +1,11 @@
 import { FirestoreAdapter } from "@next-auth/firebase-adapter";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import "firebase/firestore";
 import { firestore } from "@/lib/firestore";
 
 
 function getGoogleCredentials(): { clientId: string; clientSecret: string } {
+
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
   if (!clientId || clientId.length === 0) {
@@ -21,12 +21,7 @@ function getGoogleCredentials(): { clientId: string; clientSecret: string } {
 
 export const authOptions: NextAuthOptions = {
   adapter: FirestoreAdapter(firestore),
-  session: {
-    strategy: "jwt",
-  },
-  pages: {
-    signIn: "/login",
-  },
+  secret: process.env.SECRET ? `${process.env.SECRET}` : '',
   providers: [
     GoogleProvider({
       clientId: getGoogleCredentials().clientId,
@@ -43,8 +38,12 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     },
-    /* async jwt({ token, user }) {
-      const userRef = firestore.collection('users').doc(token.email);
+    async signIn({ user }) {
+      return true
+    },
+    async jwt({ token, user }) {
+
+      const userRef = firestore.collection('users').doc(token.email ?? "");
       const dbUser = await userRef.get();
 
       if (!dbUser.exists) {
@@ -54,15 +53,18 @@ export const authOptions: NextAuthOptions = {
 
       const userData = dbUser.data();
 
+      if (!userData) {
+        throw new Error("User data not found in Firestore");
+      }
       return {
         id: userData.id,
         name: userData.name,
         email: userData.email,
         picture: userData.image,
       };
-    }, */
+    },
     redirect() {
-      return "/dashboard";
+      return "http://localhost:3000/dashboard/fooditems";
     },
   },
 };
