@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { notFound } from "next/navigation";
 
-function Recipes() {
-  return (
-    <div>Recipes</div>
-  )
+async function Recipes() {
+  const user = await getServerSession(authOptions);
+  if (!user) return notFound();
+  return <div>Recipes</div>;
 }
 
-export default Recipes
+export default Recipes;

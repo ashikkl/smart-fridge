@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir:"true"
+    appDir: true,
+  },
+  async redirects() {
+    return [
+      {
+        source: "/dashboard",
+        destination: "/dashboard/fooditems",
+        permanent: true,
+      },
+    ];
   },
   async headers() {
     return [
