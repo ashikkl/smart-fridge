@@ -22,7 +22,7 @@ export function FridgeSelector() {
           <SelectLabel>Connected Fridges</SelectLabel>
           <SelectItem value="Fridge 1">Fridge 1</SelectItem>
           <SelectSeparator/>
-          <SelectLabel onClick={()=>{addFridge()}}>Add a Fridge</SelectLabel>
+          <SelectLabel onClick={()=>{addFridge()}}><button>Add a Fridge</button></SelectLabel>
         </SelectGroup>
       </SelectContent>
     </Select>
