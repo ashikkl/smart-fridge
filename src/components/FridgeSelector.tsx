@@ -8,6 +8,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
+  SelectSeparator,
 } from "@/components/ui/Select";
 
 export function FridgeSelector() {
@@ -20,7 +21,8 @@ export function FridgeSelector() {
         <SelectGroup>
           <SelectLabel>Connected Fridges</SelectLabel>
           <SelectItem value="Fridge 1">Fridge 1</SelectItem>
-          <SelectItem value="add" onClick={()=>{addFridge()}}>Add a Fridge</SelectItem>
+          <SelectSeparator/>
+          <SelectLabel onClick={()=>{addFridge()}}>Add a Fridge</SelectLabel>
         </SelectGroup>
       </SelectContent>
     </Select>

@@ -3,6 +3,8 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 
+//TODO add functionality
+
 async function Inside() {
   const user = await getServerSession(authOptions);
   if (!user) return notFound();
