@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <div className="  left-0 right-0 top-0 z-50 flex  h-20 items-center justify-between shadow-sm">
       <div className="container mx-auto flex w-full max-w-7xl items-center justify-between">
-        <div className="hidden gap-4 md:flex">
+        <div className="hidden gap-4 md:flex items-center">
           <Link href="/">
             <div className="flex flex-row gap-1">
               <Image
@@ -31,7 +31,7 @@ function Navbar() {
           <ThemeToggle />
         </div>
         {/* For mobile view */}
-        <div className="flex flex-row gap-2 md:hidden">
+        <div className="flex flex-row gap-2 md:hidden items-center">
           <Link href="/">
             <Image
               className="relative z-0 h-8 w-auto"
@@ -44,7 +44,7 @@ function Navbar() {
           </Link>
           <ThemeToggle />
         </div>
-        <div className="flex">
+        <div className="flex items-center">
           {!data ? (
             <Button
               className="z-0"
@@ -55,7 +55,7 @@ function Navbar() {
               Sign in
             </Button>
           ) : (
-            <div className="relative flex flex-row gap-5">
+            <div className="relative flex flex-row gap-5 items-center">
               <Button
                 className="z-0"
                 variant={"outline"}

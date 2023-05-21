@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { Plus } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -21,16 +21,25 @@ export function FridgeSelector() {
         <SelectGroup>
           <SelectLabel>Connected Fridges</SelectLabel>
           <SelectItem value="Fridge 1">Fridge 1</SelectItem>
-          <SelectSeparator/>
-          <SelectLabel onClick={()=>{addFridge()}}><button>Add a Fridge</button></SelectLabel>
+          <SelectSeparator />
+          <SelectLabel
+            onClick={() => {
+              addFridge();
+            }}
+          >
+            <div className="flex flex-row items-center gap-1">
+              <Plus />
+              <button>Add a Fridge</button>
+            </div>
+          </SelectLabel>
         </SelectGroup>
       </SelectContent>
     </Select>
   );
 }
- //TODO add functionality
+//TODO add functionality
 const addFridge = () => {
-    return ( "to do" );
-}
- 
+  return "to do";
+};
+
 export default addFridge;
