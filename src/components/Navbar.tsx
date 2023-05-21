@@ -5,7 +5,7 @@ import { signOut, signIn, useSession } from "next-auth/react";
 import { Button } from "./ui/Button";
 import Link from "next/link";
 import Image from "next/image";
-import * as Avatar from "@radix-ui/react-avatar";
+import UserProfile from "./UserProfile";
 
 function Navbar() {
   const { data } = useSession();
@@ -65,22 +65,7 @@ function Navbar() {
               >
                 Sign out
               </Button>
-              <Avatar.Root className="bg-blackA3 inline-flex h-[45px] w-[45px] select-none items-center justify-center overflow-hidden rounded-full align-middle">
-                <Avatar.Image
-                  className="h-full w-full rounded-[inherit] object-cover"
-                  src={data.user.image ? data.user.image : ""}
-                  alt={data.user.name ? data.user.name : ""}
-                />
-                <Avatar.Fallback
-                  className="leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium text-slate-900"
-                  delayMs={600}
-                >
-                  {data.user.name
-                    ?.split(" ")
-                    .map((n: string) => n[0])
-                    .join(" ")}
-                </Avatar.Fallback>
-              </Avatar.Root>
+              <UserProfile/>
             </div>
           )}
         </div>
