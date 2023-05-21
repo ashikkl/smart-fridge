@@ -26,7 +26,7 @@ export function FridgeSelector() {
     </Select>
   );
 }
- 
+ //TODO add functionality
 const addFridge = () => {
     return ( "to do" );
 }
