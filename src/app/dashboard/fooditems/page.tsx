@@ -7,7 +7,7 @@ import React from "react";
 async function FoodItems() {
   const user = await getServerSession(authOptions);
   if (!user) return notFound();
-  return <div><FoodItemCard title={"Carrot"} description={ new Date().toJSON().slice(0, 10)} content={""} footer={""} header={""} /></div>;
+  return <div><FoodItemCard title={"Carrot"} description={""} content={""} footer={""} header={""} dateCreated={"2023,5,20"} /></div>;
 }
 
 export default FoodItems;
