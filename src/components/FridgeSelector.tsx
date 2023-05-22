@@ -73,7 +73,7 @@ export function FridgeSelector() {
         <Trash width={15} />
       </Button>
       <Select
-        /* defaultValue={fridge} */
+        /* defaultValue={fridge?.length == 0 ? undefined : fridge} */
         onValueChange={(e) => {
           update(e);
         }}

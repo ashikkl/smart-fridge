@@ -70,8 +70,10 @@ export function AddFridge(): React.JSX.Element {
         <DialogFooter>
           <Button
             onClick={(event) => {
-              addFridgeToStore(id, name).then(() => setOpen(false));
-              event.preventDefault();
+              if (id.length != 0 && name.length != 0) {
+                addFridgeToStore(id, name).then(() => setOpen(false));
+                event.preventDefault();
+              }
             }}
           >
             Save changes
