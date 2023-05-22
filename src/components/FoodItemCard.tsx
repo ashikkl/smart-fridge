@@ -91,7 +91,7 @@ function FoodItemCard({
                   // Colors
                   pathColor: "#FF8A14",
                   textColor: "#f88",
-                  trailColor: "#143BFF",
+                  trailColor: `rgb(20, 138, 255,.5)`,
                   backgroundColor: "#3CFF14",
                 })}
                 strokeWidth={20}
