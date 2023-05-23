@@ -46,21 +46,19 @@ export const useFridgeStore = create<FridgeStore>()(
       (set) => ({
         fridge: "",
         fridges: [],
-        update: (defaultFridge) => set(() => ({ fridge: defaultFridge })),
+        update: (defaultFridge) => set({ fridge: defaultFridge }),
 
-        addFridge: (id, fridge) =>
+        addFridge: (id, fridgeName) =>
           set((state) => ({
-            fridges: [
-              ...state.fridges,
-              { id: id, fridgeName: fridge } as Fridge,
-            ],
+            ...state,
+            fridges: [...state.fridges, { id: id, fridgeName: fridgeName }],
           })),
 
-        removeFridge: (id) => {
+        removeFridge: (id) =>
           set((state) => ({
+            ...state,
             fridges: state.fridges.filter((fridge) => fridge.id !== id),
-          }));
-        },
+          })),
       }),
       {
         name: "FridgeStore",
