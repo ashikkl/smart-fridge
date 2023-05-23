@@ -25,7 +25,9 @@ export function AddFridge(): React.JSX.Element {
     await addFridge(id, name);
   }
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={()=>{setTimeout(() => {
+      setOpen(!open)
+    }, 1000);}}>
       <DialogTrigger asChild>
         <button className="flex flex-row items-center">
           <Plus /> Add a Fridge
@@ -35,7 +37,7 @@ export function AddFridge(): React.JSX.Element {
         <DialogHeader>
           <DialogTitle>Add a Fridge</DialogTitle>
           <DialogDescription>
-            Link a fridge to your account here. Click save when you`&apos;`re
+            Link a fridge to your account here. Click save when you&apos;re
             done.
           </DialogDescription>
         </DialogHeader>
