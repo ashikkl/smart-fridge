@@ -14,20 +14,12 @@ import { cn } from "@/lib/utils";
 
 type CardProps = React.ComponentProps<typeof Card>;
 type FICardProps = CardProps & {
-  title: string | "";
-  content: string | "";
-  description: string | "";
-  footer: string | "";
-  header: string | "";
+  title: string ;
   dateCreated: string;
 };
 
 function FoodItemCard({
   title,
-  content,
-  description,
-  footer,
-  header,
   dateCreated,
   className,
   ...props

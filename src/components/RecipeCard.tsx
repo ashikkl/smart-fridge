@@ -14,13 +14,13 @@ import { Button } from "./ui/Button";
 type CardProps = React.ComponentProps<typeof Card>;
 type RICardProps = CardProps & {
   title: string;
-  description: string;
+  missingIngredients: number;
   recipeImageUrl: string;
 };
 
 function FoodItemCard({
   title,
-  description,
+  missingIngredients,
   recipeImageUrl,
   className,
   ...props
@@ -42,7 +42,7 @@ function FoodItemCard({
             <CardHeader>
               <CardTitle className="whitespace-nowrap">{title}</CardTitle>
               <CardDescription className="text-slate-900/50 dark:text-slate-100/50">
-                {"Missing ingredients : " + description}
+                {"Missing ingredients : " + missingIngredients}
               </CardDescription>
             </CardHeader>
           </div>
