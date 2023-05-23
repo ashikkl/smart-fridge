@@ -12,6 +12,14 @@ const Dialog = ({ children, ...props }: DialogPrimitive.DialogProps) => {
 
 const DialogTrigger = DialogPrimitive.Trigger;
 
+const DialogClose = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Close>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Close ref={ref} {...props} />
+));
+DialogClose.displayName = DialogPrimitive.Title.displayName;
+
 const DialogPortal = ({
   className,
   children,
@@ -127,4 +135,5 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
+  DialogClose,
 };

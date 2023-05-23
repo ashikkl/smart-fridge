@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/Dialog";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
@@ -17,7 +18,6 @@ import React from "react";
 import { useFridgeStore } from "./FridgeSelector";
 
 export function AddFridge(): React.JSX.Element {
-  const [open, setOpen] = React.useState(false);
   const [id, setId] = React.useState("");
   const [name, setName] = React.useState("");
   const { addFridge } = useFridgeStore();
@@ -25,7 +25,7 @@ export function AddFridge(): React.JSX.Element {
     await addFridge(id, name);
   }
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog>
       <DialogTrigger asChild>
         <button className="flex flex-row items-center">
           <Plus /> Add a Fridge
@@ -68,16 +68,17 @@ export function AddFridge(): React.JSX.Element {
           </div>
         </div>
         <DialogFooter>
-          <Button
-            onClick={(event) => {
-              if (id.length != 0 && name.length != 0) {
-                addFridgeToStore(id, name).then(() => setOpen(false));
-                event.preventDefault();
-              }
-            }}
-          >
-            Save changes
-          </Button>
+          <DialogClose asChild>
+            <Button
+              onClick={() => {
+                if (id.length != 0 && name.length != 0) {
+                  addFridgeToStore(id, name);
+                }
+              }}
+            >
+              Save changes
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
