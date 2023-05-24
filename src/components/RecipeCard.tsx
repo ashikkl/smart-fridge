@@ -10,14 +10,42 @@ import {
 } from "@components/ui/Card";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/Button";
+import axiosRetry from "axios-retry";
+import axios from "axios";
 
 type CardProps = React.ComponentProps<typeof Card>;
 type RICardProps = CardProps & {
-  id:string;
+  id: string;
   title: string;
   missingIngredients: number;
   recipeImageUrl: string;
 };
+
+export async function getRecipeURL(id: string): Promise<string> {
+  let config = {
+    timeout: 10000,
+    method: "get",
+    maxBodyLength: Infinity,
+    url: `/api/fetch/recipes/url`,
+    params: { id: id },
+    headers: {},
+  };
+
+  const client = axios.create(config);
+  axiosRetry(client, {
+    retries: 1,
+    retryDelay: axiosRetry.exponentialDelay,
+  });
+  const recipiesURLReq = await client
+    .request(config)
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.error("Error fetching url from server:", err);
+    });
+  return recipiesURLReq.spoonacularSourceUrl;
+}
 
 function RecipeCard({
   id,
@@ -42,16 +70,21 @@ function RecipeCard({
               className="h-12 w-12 rounded-full object-cover opacity-90 "
             />
             <CardHeader>
-              <CardTitle className="overflow-ellipsis">
-                {title}
-              </CardTitle>
+              <CardTitle className="overflow-ellipsis">{title}</CardTitle>
               <CardDescription className="overflow-ellipsis text-slate-900/50 dark:text-slate-100/50">
                 {"Missing ingredients : " + missingIngredients}
               </CardDescription>
             </CardHeader>
           </div>
           <div className="flex items-center gap-4 pr-4">
-            <Button variant={"ghost"} value={id}>
+            <Button
+              variant={"ghost"}
+              value={id}
+              onClick={async (e) => {
+                let url: string = await getRecipeURL(e.currentTarget.value);
+                window.location.assign(url);
+              }}
+            >
               View
             </Button>
           </div>

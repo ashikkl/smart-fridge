@@ -15,44 +15,37 @@ function getSpoonacularCredentials(): {
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
-    const ingredients = searchParams.get('ingredients') || '';
+    const recipeId = searchParams.get('id') || '';
     let config = {
         timeOut: 5000,
         method: "get",
         maxBodyLength: Infinity,
-        url: `https://api.spoonacular.com/recipes/findByIngredients?ingredients=%${ingredients}&number=5&ignorePantry=true&apiKey=${getSpoonacularCredentials().SPOONACULAR_API_KEY
+        url: `https://api.spoonacular.com/recipes/${recipeId}/information?includeNutrition=false&apiKey=${getSpoonacularCredentials().SPOONACULAR_API_KEY
             }`,
         headers: {},
     };
 
     const client = axios.create(config)
     axiosRetry(client, {
-        retries: 2,
+        retries: 1,
         retryDelay: axiosRetry.exponentialDelay,
     });
 
-    const recipes = await client
+    const spoonacularSourceUrl = await client
         .request(config)
         .then((response) => {
-            const recipes = response.data.map((recipe: any) => ({
-                id: recipe.id,
-                title: recipe.title,
-                image: recipe.image,
-                missingIngredients: recipe.missedIngredientCount,
-            }));
-            console.log(response.data);
-            return recipes;
+            return response.data.spoonacularSourceUrl;
         })
         .catch((error) => {
-            console.error("Error fetching recipes:", error);
+            console.error("Error fetching recipe url:", error);
         });
 
-    if (recipes.length === 0) {
+    if (spoonacularSourceUrl.length === 0) {
         // Handle case when no recipes are found
-        return NextResponse.json({ recipes: [] });
+        return NextResponse.json({ spoonacularSourceUrl: [] });
     }
 
     // Continue with normal processing of recipes
-    return NextResponse.json({ recipes });
+    return NextResponse.json({ spoonacularSourceUrl });
 
 }
