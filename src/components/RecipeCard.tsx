@@ -13,12 +13,14 @@ import { Button } from "./ui/Button";
 
 type CardProps = React.ComponentProps<typeof Card>;
 type RICardProps = CardProps & {
+  id:string;
   title: string;
   missingIngredients: number;
   recipeImageUrl: string;
 };
 
-function FoodItemCard({
+function RecipeCard({
+  id,
   title,
   missingIngredients,
   recipeImageUrl,
@@ -40,14 +42,18 @@ function FoodItemCard({
               className="h-12 w-12 rounded-full object-cover opacity-90 "
             />
             <CardHeader>
-              <CardTitle className="whitespace-nowrap">{title}</CardTitle>
-              <CardDescription className="text-slate-900/50 dark:text-slate-100/50">
+              <CardTitle className="overflow-ellipsis">
+                {title}
+              </CardTitle>
+              <CardDescription className="overflow-ellipsis text-slate-900/50 dark:text-slate-100/50">
                 {"Missing ingredients : " + missingIngredients}
               </CardDescription>
             </CardHeader>
           </div>
           <div className="flex items-center gap-4 pr-4">
-            <Button variant={"ghost"}>View</Button>
+            <Button variant={"ghost"} value={id}>
+              View
+            </Button>
           </div>
         </div>
       </Card>
@@ -55,4 +61,4 @@ function FoodItemCard({
   );
 }
 
-export default FoodItemCard;
+export default RecipeCard;

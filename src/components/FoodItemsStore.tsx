@@ -2,7 +2,7 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
-interface FoodItem {
+export interface FoodItem {
   foodItemName: string;
   expiryDate?: Date;
   dateAdded: Date;
@@ -19,7 +19,20 @@ export const useFoodItemStore = create<FoodItemStoreState>()(
   devtools(
     persist(
       (set) => ({
-        foodItems: [],
+        foodItems: [
+          {
+            foodItemName: "carrot",
+            dateAdded: new Date("2023-5-22"),
+          },
+          {
+            foodItemName: "eggs",
+            dateAdded: new Date("2023-5-23"),
+          },
+          {
+            foodItemName: "milk",
+            dateAdded: new Date("2023-5-26"),
+          },
+        ],
         addFoodItem: (foodItem) =>
           set((state) => ({ foodItems: [...state.foodItems, foodItem] })),
         clearFoodItems: () => set({ foodItems: [] }),

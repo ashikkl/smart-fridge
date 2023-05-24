@@ -27,6 +27,7 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { Trash } from "lucide-react";
 import { Button } from "./ui/Button";
+import useRecipeStore from "./RecipeStore";
 
 interface Fridge {
   id: string;
@@ -70,6 +71,8 @@ export const useFridgeStore = create<FridgeStore>()(
 export function FridgeSelector() {
   let { fridges, fridge, update, removeFridge } = useFridgeStore();
 
+  let { updateNeedToUpdate } = useRecipeStore();
+
   const [id, setId] = React.useState("");
   const [name, setName] = React.useState("");
   const { addFridge } = useFridgeStore();
@@ -91,6 +94,7 @@ export function FridgeSelector() {
         <Select
           /* defaultValue={fridge?.length == 0 ? undefined : fridge} */
           onValueChange={(e) => {
+            updateNeedToUpdate();
             update(e);
           }}
         >
