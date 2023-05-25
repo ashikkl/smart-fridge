@@ -14,9 +14,21 @@ import { cn } from "@/lib/utils";
 
 type CardProps = React.ComponentProps<typeof Card>;
 type FICardProps = CardProps & {
-  title: string ;
+  title: string;
   dateCreated: string;
 };
+
+function convertToTitleCase(str: string) {
+  const words = str.toLowerCase().split(" ");
+
+  const titleCaseWords = words.map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+
+  const titleCaseStr = titleCaseWords.join(" ");
+
+  return titleCaseStr;
+}
 
 function FoodItemCard({
   title,
@@ -52,7 +64,7 @@ function FoodItemCard({
       >
         <div className="flex flex-row items-center justify-between pr-6">
           <CardHeader>
-            <CardTitle>{title}</CardTitle>
+            <CardTitle>{convertToTitleCase(title)}</CardTitle>
             <CardDescription className="text-slate-900/50 dark:text-slate-100/50">
               {date}
             </CardDescription>

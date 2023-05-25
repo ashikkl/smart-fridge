@@ -5,7 +5,7 @@ import { devtools, persist } from "zustand/middleware";
 export interface FoodItem {
   foodItemName: string;
   expiryDate?: Date;
-  dateAdded: Date;
+  dateAdded: string;
 }
 
 interface FoodItemStoreState {
@@ -22,15 +22,15 @@ export const useFoodItemStore = create<FoodItemStoreState>()(
         foodItems: [
           {
             foodItemName: "carrot",
-            dateAdded: new Date("2023-5-22"),
+            dateAdded: "2023-5-22",
           },
           {
             foodItemName: "eggs",
-            dateAdded: new Date("2023-5-23"),
+            dateAdded: "2023-5-23",
           },
           {
             foodItemName: "milk",
-            dateAdded: new Date("2023-5-26"),
+            dateAdded: "2023-5-26",
           },
         ],
         addFoodItem: (foodItem) =>
@@ -47,7 +47,7 @@ export const useFoodItemStore = create<FoodItemStoreState>()(
                 expiryDate: item.expiryDate
                   ? new Date(item.expiryDate)
                   : undefined,
-                dateAdded: new Date(item.dateAdded),
+                dateAdded: item.dateAdded,
               }));
 
               set({ foodItems });
