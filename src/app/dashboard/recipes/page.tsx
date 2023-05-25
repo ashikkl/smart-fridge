@@ -9,7 +9,7 @@ async function RecipesPage() {
   const user = await getServerSession(authOptions);
   if (!user) return notFound();
   return (
-    <div className="flex flex-col items-center justify-start">
+    <div className="flex flex-col items-center justify-start md:pb-10">
       <NoSSR>
         <Recipes />
       </NoSSR>
