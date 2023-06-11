@@ -3,10 +3,12 @@
 import axios from "axios";
 import axiosRetry from "axios-retry";
 import { FunctionComponent, useEffect, useState } from "react";
+import { useFridgeStore } from "./FridgeSelector";
 
 const InsideImage: FunctionComponent = () => {
   const [imageURL, setImageURL] = useState<string>("");
-  const fridgeId = "data";
+  const { fridge } = useFridgeStore();
+  const fridgeId = fridge;
   useEffect(() => {
     const fetchImageURL = async () => {
       let config = {
