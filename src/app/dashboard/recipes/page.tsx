@@ -6,6 +6,7 @@ import Recipes from "@components/Recipes";
 import NoSSR from "@/components/NoSSR";
 
 async function RecipesPage() {
+
   const user = await getServerSession(authOptions);
   if (!user) return notFound();
   return (
