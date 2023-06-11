@@ -19,7 +19,7 @@ const InsideImage: FunctionComponent = () => {
         params: { fridgeId: fridgeId },
         headers: {},
       };
-
+      
       const client = axios.create(config);
       axiosRetry(client, {
         retries: 3,

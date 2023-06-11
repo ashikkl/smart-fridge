@@ -14,10 +14,10 @@ function Navbar() {
       <div className="container mx-auto flex w-full max-w-7xl items-center justify-between">
         <div className="hidden gap-4 md:flex items-center">
           <Link href="/">
-            <div className="flex flex-row gap-1">
+            <div className="flex flex-row gap-1 items-center">
               <Image
                 className="relative z-0 h-8 w-auto"
-                src="/refrigerator.png"
+                src="/fridge.png"
                 alt="Logo"
                 priority={true}
                 width={512}
@@ -35,7 +35,7 @@ function Navbar() {
           <Link href="/">
             <Image
               className="relative z-0 h-8 w-auto"
-              src="/refrigerator.png"
+              src="/fridge.png"
               alt="Logo"
               priority={true}
               width={512}
