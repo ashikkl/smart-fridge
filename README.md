@@ -1,34 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Smart Fridge
 
-## Getting Started
+Smart Fridge is a web application that allows you to monitor your fridge remotely. It provides features such as inventory management and expiration date tracking. This repository contains the code for the Smart Fridge app.
 
-First, run the development server:
+## Installation
+
+To install and run the Smart Fridge app, follow these steps:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/ashikkl/smart-fridge.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd smart-fridge
+```
+
+3. Install the dependencies:
+
+```bash
+npm install
+```
+
+4. Set up Firebase:
+
+- Create a new Firebase project.
+- Get the Firebase configuration values.
+- Replace the placeholder values in the `.env` file with your Firebase configuration.
+
+5. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open your browser and visit `http://localhost:3000` to access the Smart Fridge app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Inventory management: Keep track of items in your fridge and their quantities.
+- Expiration date tracking: Set expiration dates for items and receive notifications when they are about to expire.
+- Real-time updates: Any changes made to the fridge inventory are immediately reflected across all devices.
+- User authentication: Securely access your fridge inventory with user authentication powered by Firebase and NextAuth.
+- Responsive design: The app is optimized for various screen sizes, allowing you to access it from desktops, tablets, and mobile devices.
 
-## Learn More
+## Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js: A React framework for building server-side rendered and static websites.
+- Firebase: A cloud-based platform that provides various backend services, including authentication and real-time database.
+- NextAuth.js: An authentication library for Next.js applications.
+- Tailwind CSS: A utility-first CSS framework for quickly building custom user interfaces.
+- Zustand: A small, fast state management library for React.
+- axios: A promise-based HTTP client for making API requests.
+- date-fns: A JavaScript date utility library for parsing, manipulating, and formatting dates.
+- framer-motion: A library for creating smooth animations in React applications.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This project is licensed under the Apache License. See the [LICENSE](LICENSE) file for details.
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions are welcome! If you find any bugs or have suggestions for improvement, please open an issue or submit a pull request.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contact
+
+For any inquiries or questions, please contact me at itsashikkl@gmail.com.
+
+---
