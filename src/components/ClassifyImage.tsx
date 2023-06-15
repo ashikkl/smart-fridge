@@ -3,9 +3,43 @@
 import { useEffect, useState } from "react";
 import { FoodItem, useFoodItemStore } from "./FoodItemsStore";
 import { useFridgeStore } from "./FridgeSelector";
+import axios from "axios";
+import axiosRetry from "axios-retry";
 
 function ClassifyImage() {
-  const { imageURL } = useFridgeStore();
+  const [imageURL, setImageURL] = useState<string>("");
+  const { fridge, updateURL } = useFridgeStore();
+  const fridgeId = fridge;
+  useEffect(() => {
+    const fetchImageURL = async () => {
+      let config = {
+        timeout: 30000,
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `/api/fetch/inside`,
+        params: { fridgeId: fridgeId },
+        headers: {},
+      };
+
+      const client = axios.create(config);
+      axiosRetry(client, {
+        retries: 3,
+        retryDelay: axiosRetry.exponentialDelay,
+      });
+      const ImageReq = await client
+        .request(config)
+        .then((response) => {
+          const url = response.data.url;
+          setImageURL(url);
+          updateURL(url);
+        })
+        .catch((err) => {
+          console.error("Error fetching image url from server:", err);
+        });
+    };
+
+    fetchImageURL();
+  }, [fridgeId, updateURL]);
   const { foodItems, updateFoodItems } = useFoodItemStore();
   const [newFoodItems, setFoodItems] = useState<FoodItem[]>([]);
 
@@ -62,19 +96,23 @@ function ClassifyImage() {
         .then((response) => response.json())
         .then((result) => {
           const out = result.outputs[0].data.concepts;
-          const newFoodItems = out.map((foodItem: any) => {
+          let newFoodItems = out.map((foodItem: any) => {
             let checker = notInList(foodItem.name);
-            if (checker) {
+
+            if (checker && foodItem.value > 0.005) {
               return {
                 foodItemName: foodItem.name,
                 dateAdded: new Date(),
               };
-            } else {
+            }
+            if (!checker) {
               let oldDate = getDate(foodItem.name);
 
               return { foodItemName: foodItem.name, dateAdded: oldDate };
             }
+            return null;
           });
+          newFoodItems = newFoodItems.filter((item: any) => item !== null);
 
           setFoodItems(newFoodItems);
           updateFoodItems(newFoodItems);

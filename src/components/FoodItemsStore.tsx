@@ -19,20 +19,7 @@ export const useFoodItemStore = create<FoodItemStoreState>()(
   devtools(
     persist(
       (set) => ({
-        foodItems: [
-          {
-            foodItemName: "carrot",
-            dateAdded: "2023-5-22",
-          },
-          {
-            foodItemName: "eggs",
-            dateAdded: "2023-5-23",
-          },
-          {
-            foodItemName: "milk",
-            dateAdded: "2023-5-26",
-          },
-        ],
+        foodItems: [],
         addFoodItem: (foodItem) =>
           set((state) => ({ foodItems: [...state.foodItems, foodItem] })),
         clearFoodItems: () => set({ foodItems: [] }),
