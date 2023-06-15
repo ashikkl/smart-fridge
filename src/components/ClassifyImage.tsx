@@ -83,12 +83,11 @@ function ClassifyImage() {
             const result = await response.json();
 
             const out = result.outputs[0].data.concepts;
-            console.log(out);
             
             let newFoodItems = out.map((foodItem: any) => {
               let checker = notInList(foodItem.name);
 
-              if (checker && foodItem.value > 0.5) {
+              if (checker && foodItem.value > 0.1) {
                 return {
                   foodItemName: foodItem.name,
                   dateAdded: new Date(),
