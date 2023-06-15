@@ -59,9 +59,6 @@ function ClassifyImage() {
     return result;
   }
 
-  const IMAGE_URL =
-    "https://media.istockphoto.com/id/175448913/photo/refrigerator.jpg?s=1024x1024&w=is&k=20&c=QuR48VAZTuxXkg18PU0t0sBV7CeN3fC4JRBj6YVz4Hc=";
-
   const raw = JSON.stringify({
     user_app_id: {
       user_id: "clarifai",
@@ -71,7 +68,7 @@ function ClassifyImage() {
       {
         data: {
           image: {
-            url: IMAGE_URL,
+            url: imageURL,
           },
         },
       },
