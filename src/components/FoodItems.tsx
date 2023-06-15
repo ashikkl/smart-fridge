@@ -20,7 +20,7 @@ function FoodItems(): JSX.Element {
       </div>
     );
   }
-  return <div>No food items detected</div>;
+  return <div className="h-[70dvh] flex items-center justify-center">No food items detected</div>;
 }
 
 export default FoodItems;

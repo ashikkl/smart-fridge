@@ -7,7 +7,7 @@ import { useFridgeStore } from "./FridgeSelector";
 
 const InsideImage: FunctionComponent = () => {
   const [imageURL, setImageURL] = useState<string>("");
-  const { fridge } = useFridgeStore();
+  const { fridge, updateURL } = useFridgeStore();
   const fridgeId = fridge;
   useEffect(() => {
     const fetchImageURL = async () => {
@@ -19,7 +19,7 @@ const InsideImage: FunctionComponent = () => {
         params: { fridgeId: fridgeId },
         headers: {},
       };
-      
+
       const client = axios.create(config);
       axiosRetry(client, {
         retries: 3,
@@ -30,6 +30,7 @@ const InsideImage: FunctionComponent = () => {
         .then((response) => {
           const url = response.data.url;
           setImageURL(url);
+          updateURL(url);
         })
         .catch((err) => {
           console.error("Error fetching image url from server:", err);
@@ -37,7 +38,7 @@ const InsideImage: FunctionComponent = () => {
     };
 
     fetchImageURL();
-  }, [fridgeId]);
+  }, [fridgeId, updateURL]);
 
   return imageURL.length ? (
     // eslint-disable-next-line @next/next/no-img-element

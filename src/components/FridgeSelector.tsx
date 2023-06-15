@@ -36,7 +36,9 @@ interface Fridge {
 interface FridgeStore {
   fridge?: string;
   fridges: Fridge[];
+  imageURL: string;
   update: (defaultFridge: string) => void;
+  updateURL: (url: string) => void;
   addFridge: (id: string, fridgeName: string) => void;
   removeFridge: (id: string) => void;
 }
@@ -46,8 +48,11 @@ export const useFridgeStore = create<FridgeStore>()(
     persist(
       (set) => ({
         fridge: "",
+        imageURL: "",
         fridges: [],
         update: (defaultFridge) => set({ fridge: defaultFridge }),
+
+        updateURL: (url) => set({ imageURL: url }),
 
         addFridge: (id, fridgeName) =>
           set((state) => ({
