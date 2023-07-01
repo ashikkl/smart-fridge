@@ -38,6 +38,9 @@ npm run dev
 
 6. Open your browser and visit `http://localhost:3000` to access the Smart Fridge app.
 
+## Testing
+- Use 'data' as fridge Id and give any fridge name and add it in the fridge selector. Select this to check the web app functionality.
+
 ## Features
 
 - Inventory management: Keep track of items in your fridge and their quantities.
