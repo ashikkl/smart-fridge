@@ -1,6 +1,6 @@
 # Smart Fridge
 
-Smart Fridge is a web application that allows you to monitor your fridge remotely. It provides features such as inventory management and expiration date tracking. This repository contains the code for the Smart Fridge app.
+Smart Fridge is a web application that allows you to monitor your fridge remotely. It provides features such as inventory management and expiration date tracking. This repository contains the code for the Smart Fridge app. An ESP32-CAM is used for capturing images and then uploading it to Firebase Cloud Storage. 
 
 ## Installation
 
